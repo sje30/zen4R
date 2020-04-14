@@ -519,8 +519,9 @@ ZenodoRecord <-  R6Class("ZenodoRecord",
     },
     
     #addCreator
-    addCreator = function(firstname, lastname, affiliation = NULL, orcid = NULL, gnd = NULL){
-      creator <- list(name = paste(lastname, firstname, sep=", "))
+    addCreator = function(firstname, lastname, name = paste(lastname, firstname, sep=", "),
+                                                 affiliation = NULL, orcid = NULL, gnd = NULL){
+      creator <- list(name = name)
       if(!is.null(affiliation)) creator <- c(creator, affiliation = affiliation)
       if(!is.null(orcid)) creator <- c(creator, orcid = orcid)
       if(!is.null(gnd)) creator <- c(creator, gnd = gnd)
