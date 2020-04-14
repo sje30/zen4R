@@ -562,7 +562,7 @@ ZenodoRecord <-  R6Class("ZenodoRecord",
     },
     
     #addContributor
-    addContributor = function(firstname, lastname, type, affiliation = NULL, orcid = NULL, gnd = NULL){
+    addContributor = function(firstname, lastname, name=paste(lastname, firstname, sep=", "), affiliation = NULL, orcid = NULL, gnd = NULL){
       allowedTypes <- c("ContactPerson", "DataCollector", "DataCurator", "DataManager","Distributor",
                         "Editor", "Funder", "HostingInstitution", "Producer", "ProjectLeader", "ProjectManager",
                         "ProjectMember", "RegistrationAgency", "RegistrationAuthority", "RelatedPerson",
@@ -571,7 +571,7 @@ ZenodoRecord <-  R6Class("ZenodoRecord",
         stop(sprintf("The contributor type should be one value among values [%s]",
                       paste(allowedTypes, collapse=",")))
       }
-      contributor <- list(name = paste(lastname, firstname, sep=", "), type = type)
+      contributor <- list(name = name), type = type)
       if(!is.null(affiliation)) contributor <- c(contributor, affiliation = affiliation)
       if(!is.null(orcid)) contributor <- c(contributor, orcid = orcid)
       if(!is.null(gnd)) contributor <- c(contributor, gnd = gnd)
